@@ -11,7 +11,21 @@ const dirname =
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react({
+      babel: {
+        plugins: [
+          [
+            '@emotion/babel-plugin',
+            {
+              labelFormat: '[local]',
+              autoLabel: 'always',
+            },
+          ],
+        ],
+      },
+    }),
+  ],
   resolve: {
     alias: {
       '@': path.resolve(dirname, './src'),
