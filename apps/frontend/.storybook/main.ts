@@ -1,6 +1,6 @@
 import type { StorybookConfig } from '@storybook/react-vite';
 
-import { dirname } from 'path';
+import path, { dirname } from 'path';
 
 import { fileURLToPath } from 'url';
 
@@ -11,6 +11,9 @@ import { fileURLToPath } from 'url';
 function getAbsolutePath(value: string): any {
   return dirname(fileURLToPath(import.meta.resolve(`${value}/package.json`)));
 }
+
+const storybookDirname = dirname(fileURLToPath(import.meta.url));
+
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
@@ -21,5 +24,20 @@ const config: StorybookConfig = {
     getAbsolutePath('@storybook/addon-docs'),
   ],
   framework: getAbsolutePath('@storybook/react-vite'),
+  viteFinal: async (config) => {
+    if (config.resolve) {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        '@': path.resolve(storybookDirname, '../src'),
+      };
+    } else {
+      config.resolve = {
+        alias: {
+          '@': path.resolve(storybookDirname, '../src'),
+        },
+      };
+    }
+    return config;
+  },
 };
 export default config;
