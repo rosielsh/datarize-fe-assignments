@@ -8,9 +8,7 @@ const Header = () => {
       <S.IconWrapper>
         <ChartIcon />
       </S.IconWrapper>
-      <S.TextContainer>
-        <S.Title>쇼핑몰 구매 대시보드</S.Title>
-      </S.TextContainer>
+      <S.Title>쇼핑몰 구매 대시보드</S.Title>
     </S.Container>
   );
 };

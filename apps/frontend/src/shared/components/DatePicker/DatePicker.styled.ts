@@ -23,7 +23,7 @@ export const DateInputWrapper = styled.div`
   background-color: #ffffff;
   color: #374151;
   font-size: 14px;
-  min-width: 140px;
+  min-width: 80px;
   cursor: pointer;
   transition: border-color 0.2s;
 

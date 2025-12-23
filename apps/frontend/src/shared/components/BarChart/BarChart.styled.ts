@@ -4,10 +4,6 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 24px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 `;
 
 export const Title = styled.h2`
