@@ -1,36 +1,31 @@
 import BarChart from '@/shared/components/BarChart/BarChart';
 import Calendar from '@/shared/components/Calendar/Calendar';
 import DateInput from '@/shared/components/DateInput/DateInput';
+import Loading from '@/shared/components/Loading/Loading';
 import { formatDate } from '@/shared/formatters/formatDate';
 import { useState } from 'react';
 import { formatRange } from '../../formatters/formatRange';
+import { useCalendarState } from '../../hooks/useCalendarState';
 import { usePurchaseFrequency } from '../../hooks/usePurchaseFrequency';
 import * as S from './PurchaseFrequencySection.styled';
 
 const PurchaseFrequencySection = () => {
   const [startDate, setStartDate] = useState<string>('2024-07-01');
   const [endDate, setEndDate] = useState<string>('2024-07-31');
-  const [isOpenCalendar, setIsOpenCalendar] = useState(false);
-  const [selectType, setSelectType] = useState<'start' | 'end' | null>(null);
+  const { isOpen, selectType, open, close } = useCalendarState();
 
   const { data, isLoading } = usePurchaseFrequency({
     from: startDate,
     to: endDate,
   });
 
-  const handleInput = (type: 'start' | 'end') => {
-    setIsOpenCalendar(true);
-    setSelectType(type);
-  };
-
   const handleDateClick = (date: string) => {
     if (selectType === 'start') {
       setStartDate(date);
-    } else {
+    } else if (selectType === 'end') {
       setEndDate(date);
     }
-    setIsOpenCalendar(false);
-    setSelectType(null);
+    close();
   };
 
   return (
@@ -43,10 +38,10 @@ const PurchaseFrequencySection = () => {
           </S.DateInfo>
         </S.TitleWrapper>
         <S.DateRangeContainer>
-          <DateInput date={startDate} onInputClick={() => handleInput('start')} />
+          <DateInput date={startDate} onInputClick={() => open('start')} />
           <S.Separator>~</S.Separator>
-          <DateInput date={endDate} onInputClick={() => handleInput('end')} />
-          {isOpenCalendar && (
+          <DateInput date={endDate} onInputClick={() => open('end')} />
+          {isOpen && (
             <S.CalendarWrapper>
               <Calendar
                 startDate={startDate}
@@ -60,7 +55,7 @@ const PurchaseFrequencySection = () => {
       </S.Header>
 
       {isLoading ? (
-        <div>로딩 중...</div>
+        <Loading />
       ) : (
         <BarChart data={data} xAxisKey="range" barKey="count" formatXAxisLabel={formatRange} />
       )}
