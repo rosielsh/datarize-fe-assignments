@@ -1,8 +1,7 @@
 import CalendarIcon from '@/shared/assets/icons/Calendar/Calendar';
 import CustomerIcon from '@/shared/assets/icons/Customer/Customer';
-import { formatDate } from '@/shared/formatters/formatDate';
 import { formatAmount } from '../../formatters/formatAmount';
-import { useCustomerPurchases } from '../../hooks/useCustomerPurchases';
+import PurchaseList from '../PurchaseList/PurchaseList';
 import * as S from './CustomerPurchaseModal.styled';
 
 type CustomerInfo = {
@@ -18,8 +17,6 @@ type Props = {
 };
 
 const CustomerPurchaseModal = ({ customer }: Props) => {
-  const { data: purchases, isLoading } = useCustomerPurchases(customer.id);
-
   return (
     <S.Container>
       <S.Header>
@@ -30,9 +27,7 @@ const CustomerPurchaseModal = ({ customer }: Props) => {
             <S.Metric>
               <CustomerIcon />
               <S.MetricText>총 구매</S.MetricText>
-              <S.MetricValue>
-                {customer.count}개 ({purchases.length}건)
-              </S.MetricValue>
+              <S.MetricValue>{customer.count}개</S.MetricValue>
             </S.Metric>
             <S.Metric>
               <CalendarIcon />
@@ -45,29 +40,7 @@ const CustomerPurchaseModal = ({ customer }: Props) => {
 
       <S.Content>
         <S.SectionTitle>구매 내역</S.SectionTitle>
-        {isLoading ? (
-          <S.LoadingText>로딩 중...</S.LoadingText>
-        ) : purchases.length === 0 ? (
-          <S.EmptyText>구매 내역이 없습니다.</S.EmptyText>
-        ) : (
-          <S.PurchaseList>
-            {purchases.map((purchase, index) => (
-              <S.PurchaseItem key={purchase.id ?? index}>
-                <S.ProductImage src={purchase.imgSrc} alt={purchase.product} />
-                <S.PurchaseInfo>
-                  <S.ProductName>
-                    {purchase.product} | {purchase.quantity}개
-                  </S.ProductName>
-                  <S.PurchaseDate>
-                    <CalendarIcon />
-                    {formatDate(purchase.date)}
-                  </S.PurchaseDate>
-                  <S.PurchasePrice>{formatAmount(purchase.price)}</S.PurchasePrice>
-                </S.PurchaseInfo>
-              </S.PurchaseItem>
-            ))}
-          </S.PurchaseList>
-        )}
+        <PurchaseList customerId={customer.id} />
       </S.Content>
     </S.Container>
   );
