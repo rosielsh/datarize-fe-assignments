@@ -11,7 +11,7 @@ type SortOrder = 'asc' | 'desc' | null;
 const CustomerRankingSection = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortField, setSortField] = useState<SortField>('id');
-  const [sortOrder, setSortOrder] = useState<SortOrder>('asc');
+  const [sortOrder, setSortOrder] = useState<SortOrder>(null);
 
   const {
     data: customers,
@@ -24,7 +24,13 @@ const CustomerRankingSection = () => {
 
   const handleSort = (field: SortField) => {
     if (field === sortField) {
-      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+      if (sortOrder === null) {
+        setSortOrder('asc');
+      } else if (sortOrder === 'asc') {
+        setSortOrder('desc');
+      } else {
+        setSortOrder(null);
+      }
     } else {
       setSortField(field);
       setSortOrder('asc');
@@ -34,8 +40,6 @@ const CustomerRankingSection = () => {
   const formatAmount = (amount: number): string => {
     return `₩${amount.toLocaleString()}`;
   };
-
-  console.log(error);
 
   return (
     <S.Container>
@@ -51,20 +55,16 @@ const CustomerRankingSection = () => {
       <S.Table>
         <S.TableHead>
           <S.TableRow>
-            <S.TableHeader>
-              <S.SortButton type="button" onClick={() => handleSort('id')}>
-                ID
-                {sortField === 'id' && sortOrder === 'asc' && <ChevronUpIcon />}
-                {sortField === 'id' && sortOrder === 'desc' && <ChevronDownIcon />}
-              </S.SortButton>
-            </S.TableHeader>
+            <S.TableHeader>ID</S.TableHeader>
             <S.TableHeader>이름</S.TableHeader>
             <S.TableHeader>구매 횟수</S.TableHeader>
             <S.TableHeader>
               <S.SortButton type="button" onClick={() => handleSort('totalAmount')}>
                 총 구매 금액
-                {sortField === 'totalAmount' && sortOrder === 'asc' && <ChevronUpIcon />}
-                {sortField === 'totalAmount' && sortOrder === 'desc' && <ChevronDownIcon />}
+                <S.IconWrapper>
+                  {sortField === 'totalAmount' && sortOrder === 'asc' && <ChevronUpIcon />}
+                  {sortField === 'totalAmount' && sortOrder === 'desc' && <ChevronDownIcon />}
+                </S.IconWrapper>
               </S.SortButton>
             </S.TableHeader>
           </S.TableRow>
@@ -73,6 +73,10 @@ const CustomerRankingSection = () => {
           {isLoading ? (
             <S.TableRow>
               <S.TableCell colSpan={4}>로딩 중...</S.TableCell>
+            </S.TableRow>
+          ) : error ? (
+            <S.TableRow>
+              <S.TableCell colSpan={4}>고객 데이터가 없습니다.</S.TableCell>
             </S.TableRow>
           ) : (
             customers.map((customer) => (

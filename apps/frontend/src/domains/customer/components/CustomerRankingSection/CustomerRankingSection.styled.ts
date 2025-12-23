@@ -57,6 +57,11 @@ export const TableHeader = styled.th`
   font-weight: 600;
   color: #374151;
   background-color: #f9fafb;
+
+  &:last-child {
+    width: 200px;
+    min-width: 200px;
+  }
 `;
 
 export const TableCell = styled.td`
@@ -66,7 +71,7 @@ export const TableCell = styled.td`
 `;
 
 export const SortButton = styled.button`
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 4px;
   border: none;
@@ -76,10 +81,18 @@ export const SortButton = styled.button`
   font-weight: 600;
   cursor: pointer;
   padding: 0;
+  justify-content: flex-start;
 
   &:hover {
     color: #111827;
   }
+`;
+
+export const IconWrapper = styled.span`
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
 `;
 
 export const CountBadge = styled.span`
