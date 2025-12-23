@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { S } from './TabBar.styled';
+import * as S from './TabBar.styled';
 
 type TabItem = {
   id: string;

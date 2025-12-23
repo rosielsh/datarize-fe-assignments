@@ -140,6 +140,7 @@ const Calendar = ({ startDate, endDate, onDateClick, selectionMode }: Props) => 
       }
       return false;
     }
+
     if (selectionMode === 'end') {
       if (startDate && dateString < startDate) {
         return true;

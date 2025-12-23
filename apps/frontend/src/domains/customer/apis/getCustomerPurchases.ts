@@ -1,4 +1,4 @@
-import { api } from '@/apis';
+import { api } from '@/apis/api';
 import type { Purchase } from '../types/customer';
 
 export const getCustomerPurchases = async (id: number): Promise<Purchase[]> => {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 type UseFetchOptions<T> = {
   fetcher: () => Promise<T>;
@@ -36,4 +36,3 @@ export const useFetch = <T>({ fetcher, deps = [], enabled = true }: UseFetchOpti
 
   return { data, isLoading, error };
 };
-

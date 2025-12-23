@@ -1,8 +1,8 @@
 import BarChart from '@/shared/components/BarChart/BarChart';
 import Calendar from '@/shared/components/Calendar/Calendar';
 import DateInput from '@/shared/components/DateInput/DateInput';
+import { formatDate } from '@/shared/formatters/formatDate';
 import { useState } from 'react';
-import { formatDate } from '../../../../shared/formatters/formatDate';
 import { formatRange } from '../../formatters/formatRange';
 import { usePurchaseFrequency } from '../../hooks/usePurchaseFrequency';
 import * as S from './PurchaseFrequencySection.styled';

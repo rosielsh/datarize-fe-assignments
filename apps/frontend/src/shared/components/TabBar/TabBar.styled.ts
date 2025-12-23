@@ -44,10 +44,3 @@ export const IconWrapper = styled.div<{ isActive: boolean }>`
 export const Label = styled.span`
   white-space: nowrap;
 `;
-
-export const S = {
-  Container,
-  TabItem,
-  IconWrapper,
-  Label,
-};

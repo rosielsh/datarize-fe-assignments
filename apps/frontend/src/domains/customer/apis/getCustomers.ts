@@ -1,4 +1,4 @@
-import { api } from '@/apis';
+import { api } from '@/apis/api';
 import { buildQueryParams } from '@/shared/utils/buildQueryParams';
 import type { Customer, CustomerParams } from '../types/customer';
 

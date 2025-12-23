@@ -1,5 +1,4 @@
 import ChartIcon from '@/shared/assets/icons/Chart/ChartIcon';
-
 import * as S from './Header.styled';
 
 const Header = () => {

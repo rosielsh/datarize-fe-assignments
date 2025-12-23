@@ -1,3 +1,4 @@
+import { formatRange } from '@/domains/purchase-frequency/formatters/formatRange';
 import type { Meta, StoryObj } from '@storybook/react';
 import BarChart from './BarChart';
 
@@ -24,30 +25,6 @@ const sampleData = [
   { range: '80001 - 90000', count: 0 },
   { range: '90001 - 100000', count: 13 },
 ];
-
-const formatRange = (range: string | number): string => {
-  const rangeStr = String(range);
-  const parts = rangeStr.split(' - ');
-  if (parts.length !== 2) return rangeStr;
-
-  const start = parseInt(parts[0], 10);
-  const end = parseInt(parts[1], 10);
-
-  const formatAmount = (amount: number): string => {
-    if (amount === 0) return '~';
-    const 만원 = Math.floor(amount / 10000);
-    if (만원 === 0) {
-      return `${amount}원`;
-    }
-    return `${만원}만원`;
-  };
-
-  if (start === 0) {
-    return `~${formatAmount(end)}`;
-  }
-
-  return `${formatAmount(start)}~${formatAmount(end)}`;
-};
 
 export const Default: Story = {
   args: {
