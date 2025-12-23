@@ -46,33 +46,35 @@ const CustomerRankingSection = () => {
           setInputValue('');
         }}
       >
-        <S.Table>
-          <S.TableHead>
-            <S.TableRow>
-              <S.TableHeader>ID</S.TableHeader>
-              <S.TableHeader>이름</S.TableHeader>
-              <S.TableHeader>구매 횟수</S.TableHeader>
-              <S.TableHeader>
-                <S.SortButton type="button" onClick={handleSort}>
-                  총 구매 금액
-                  <S.IconWrapper>
-                    {sortOrder === 'asc' && <ChevronUpIcon />}
-                    {sortOrder === 'desc' && <ChevronDownIcon />}
-                  </S.IconWrapper>
-                </S.SortButton>
-              </S.TableHeader>
-            </S.TableRow>
-          </S.TableHead>
-          <S.TableBody>
-            <CustomerList
-              params={{
-                name: searchQuery,
-                sortBy: sortOrder,
-              }}
-              onCustomerClick={handleCustomerClick}
-            />
-          </S.TableBody>
-        </S.Table>
+        <S.TableWrapper>
+          <S.Table>
+            <S.TableHead>
+              <S.TableRow>
+                <S.TableHeader>ID</S.TableHeader>
+                <S.TableHeader>이름</S.TableHeader>
+                <S.TableHeader>구매 횟수</S.TableHeader>
+                <S.TableHeader>
+                  <S.SortButton type="button" onClick={handleSort}>
+                    총 구매 금액
+                    <S.IconWrapper>
+                      {sortOrder === 'asc' && <ChevronUpIcon />}
+                      {sortOrder === 'desc' && <ChevronDownIcon />}
+                    </S.IconWrapper>
+                  </S.SortButton>
+                </S.TableHeader>
+              </S.TableRow>
+            </S.TableHead>
+            <S.TableBody>
+              <CustomerList
+                params={{
+                  name: searchQuery,
+                  sortBy: sortOrder,
+                }}
+                onCustomerClick={handleCustomerClick}
+              />
+            </S.TableBody>
+          </S.Table>
+        </S.TableWrapper>
       </LocalErrorBoundary>
     </S.Container>
   );

@@ -33,12 +33,25 @@ export const SearchWrapper = styled.div`
   width: 300px;
 `;
 
+export const TableWrapper = styled.div`
+  width: 100%;
+  max-height: 600px;
+  overflow-y: auto;
+  border: 1px solid ${({ theme }) => theme.colors.border.lightGray};
+  border-radius: ${({ theme }) => theme.radius.md};
+`;
+
 export const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
 `;
 
-export const TableHead = styled.thead``;
+export const TableHead = styled.thead`
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: ${({ theme }) => theme.colors.bg.gray};
+`;
 
 export const TableRow = styled.tr``;
 
@@ -83,5 +96,4 @@ export const IconWrapper = styled.span`
 
 export const TableBody = styled.tbody`
   width: 100%;
-  height: 100%;
 `;
