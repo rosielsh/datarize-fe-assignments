@@ -1,6 +1,7 @@
 import CalendarIcon from '@/shared/assets/icons/Calendar/Calendar';
 import CustomerIcon from '@/shared/assets/icons/Customer/Customer';
 import { formatDate } from '@/shared/formatters/formatDate';
+import { formatAmount } from '../../formatters/formatAmount';
 import { useCustomerPurchases } from '../../hooks/useCustomerPurchases';
 import * as S from './CustomerPurchaseModal.styled';
 
@@ -18,10 +19,6 @@ type Props = {
 
 const CustomerPurchaseModal = ({ customer }: Props) => {
   const { data: purchases, isLoading } = useCustomerPurchases(customer.id);
-
-  const formatAmount = (amount: number): string => {
-    return `₩${amount.toLocaleString()}`;
-  };
 
   return (
     <S.Container>
@@ -54,8 +51,8 @@ const CustomerPurchaseModal = ({ customer }: Props) => {
           <S.EmptyText>구매 내역이 없습니다.</S.EmptyText>
         ) : (
           <S.PurchaseList>
-            {purchases.map((purchase) => (
-              <S.PurchaseItem key={purchase.id}>
+            {purchases.map((purchase, index) => (
+              <S.PurchaseItem key={purchase.id ?? index}>
                 <S.ProductImage src={purchase.imgSrc} alt={purchase.product} />
                 <S.PurchaseInfo>
                   <S.ProductName>
