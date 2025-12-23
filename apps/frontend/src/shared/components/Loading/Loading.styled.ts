@@ -5,11 +5,11 @@ export const LoadingContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: ${({ theme }) => theme.spacing.md};
   padding: 40px;
 `;
 
 export const LoadingText = styled.div`
-  color: #6b7280;
-  font-size: 14px;
+  color: ${({ theme }) => theme.colors.text.light};
+  font-size: ${({ theme }) => theme.fontSize.sm};
 `;

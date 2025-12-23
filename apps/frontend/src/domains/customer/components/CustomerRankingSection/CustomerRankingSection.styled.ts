@@ -2,31 +2,31 @@ import styled from '@emotion/styled';
 
 export const Container = styled.section`
   width: 100%;
-  padding: 2rem;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  margin-top: 1rem;
+  padding: ${({ theme }) => theme.spacing.xl};
+  background-color: ${({ theme }) => theme.colors.bg.white};
+  border-radius: ${({ theme }) => theme.radius.md};
+  box-shadow: ${({ theme }) => theme.shadow.md};
+  margin-top: ${({ theme }) => theme.spacing.md};
 `;
 
 export const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 24px;
+  margin-bottom: ${({ theme }) => theme.spacing.lg};
 `;
 
 export const TitleWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: ${({ theme }) => theme.spacing.sm};
 `;
 
 export const Title = styled.h2`
   margin: 0;
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #111827;
+  font-size: ${({ theme }) => theme.fontSize.lg};
+  font-weight: ${({ theme }) => theme.fontWeight.semibold};
+  color: ${({ theme }) => theme.colors.text.main};
 `;
 
 export const SearchWrapper = styled.div`
@@ -43,12 +43,12 @@ export const TableHead = styled.thead``;
 export const TableRow = styled.tr``;
 
 export const TableHeader = styled.th`
-  padding: 12px 16px;
+  padding: 12px ${({ theme }) => theme.spacing.md};
   text-align: left;
-  font-size: 14px;
-  font-weight: 600;
-  color: #374151;
-  background-color: #f9fafb;
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  font-weight: ${({ theme }) => theme.fontWeight.semibold};
+  color: ${({ theme }) => theme.colors.text.sub};
+  background-color: ${({ theme }) => theme.colors.bg.gray};
 
   &:last-child {
     width: 200px;
@@ -59,18 +59,18 @@ export const TableHeader = styled.th`
 export const SortButton = styled.button`
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: ${({ theme }) => theme.spacing.xs};
   border: none;
   background: transparent;
-  color: #374151;
-  font-size: 14px;
-  font-weight: 600;
+  color: ${({ theme }) => theme.colors.text.sub};
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  font-weight: ${({ theme }) => theme.fontWeight.semibold};
   cursor: pointer;
   padding: 0;
   justify-content: flex-start;
 
   &:hover {
-    color: #111827;
+    color: ${({ theme }) => theme.colors.text.main};
   }
 `;
 

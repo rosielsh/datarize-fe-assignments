@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const TableCell = styled.td`
-  padding: 12px 16px;
-  font-size: 14px;
-  color: #111827;
+  padding: 12px ${({ theme }) => theme.spacing.md};
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  color: ${({ theme }) => theme.colors.text.main};
 `;

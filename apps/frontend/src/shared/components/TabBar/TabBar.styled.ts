@@ -2,30 +2,32 @@ import styled from '@emotion/styled';
 
 export const Container = styled.div`
   display: flex;
-  gap: 8px;
-  background-color: #f3f4f6;
-  padding: 4px;
-  border-radius: 8px;
+  gap: ${({ theme }) => theme.spacing.sm};
+  background-color: ${({ theme }) => theme.colors.border.lightGray};
+  padding: ${({ theme }) => theme.spacing.xs};
+  border-radius: ${({ theme }) => theme.radius.md};
 `;
 
 export const TabItem = styled.button<{ isActive: boolean }>`
   flex: 1;
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
+  gap: ${({ theme }) => theme.spacing.sm};
+  padding: 10px ${({ theme }) => theme.spacing.md};
   border: none;
   border-radius: 6px;
-  background-color: ${({ isActive }) => (isActive ? '#ffffff' : 'transparent')};
-  box-shadow: ${({ isActive }) => (isActive ? '0 1px 2px 0 rgba(0, 0, 0, 0.05)' : 'none')};
+  background-color: ${({ isActive, theme }) => (isActive ? theme.colors.bg.white : 'transparent')};
+  box-shadow: ${({ isActive, theme }) => (isActive ? theme.shadow.sm : 'none')};
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  font-size: 14px;
-  font-weight: 500;
-  color: ${({ isActive }) => (isActive ? '#374151' : '#9ca3af')};
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  font-weight: ${({ theme }) => theme.fontWeight.medium};
+  color: ${({ isActive, theme }) =>
+    isActive ? theme.colors.text.sub : theme.colors.text.placeholder};
 
   &:hover {
-    background-color: ${({ isActive }) => (isActive ? '#ffffff' : '#e5e7eb')};
+    background-color: ${({ isActive, theme }) =>
+      isActive ? theme.colors.bg.white : theme.colors.border.gray};
   }
 
   &:active {
@@ -37,7 +39,8 @@ export const IconWrapper = styled.div<{ isActive: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${({ isActive }) => (isActive ? '#374151' : '#9ca3af')};
+  color: ${({ isActive, theme }) =>
+    isActive ? theme.colors.text.sub : theme.colors.text.placeholder};
   transition: color 0.2s ease-in-out;
 `;
 

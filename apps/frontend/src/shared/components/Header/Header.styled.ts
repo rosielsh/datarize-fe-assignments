@@ -5,26 +5,26 @@ export const Container = styled.header`
   height: 4rem;
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 24px;
-  background-color: #ffffff;
+  gap: ${({ theme }) => theme.spacing.md};
+  padding: ${({ theme }) => theme.spacing.lg};
+  background-color: ${({ theme }) => theme.colors.bg.white};
 `;
 
 export const IconWrapper = styled.div`
   width: 2.5rem;
   height: 2.5rem;
-  border-radius: 8px;
+  border-radius: ${({ theme }) => theme.radius.md};
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: ${({ theme }) => theme.shadow.lg};
 `;
 
 export const Title = styled.h1`
   margin: 0;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #374151;
+  font-size: ${({ theme }) => theme.fontSize.lg};
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  color: ${({ theme }) => theme.colors.text.sub};
   line-height: 1.5;
 `;

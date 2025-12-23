@@ -4,7 +4,7 @@ export const Container = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #f9fafb;
+  background-color: ${({ theme }) => theme.colors.bg.gray};
 `;
 
 export const Content = styled.main`
@@ -12,7 +12,7 @@ export const Content = styled.main`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: ${({ theme }) => theme.spacing.xl};
 `;
 
 export const ErrorContainer = styled.div`
@@ -21,32 +21,32 @@ export const ErrorContainer = styled.div`
 `;
 
 export const ErrorTitle = styled.h2`
-  font-size: 32px;
-  font-weight: 600;
-  color: #111827;
-  margin: 24px 0 16px 0;
+  font-size: ${({ theme }) => theme.fontSize.xl};
+  font-weight: ${({ theme }) => theme.fontWeight.semibold};
+  color: ${({ theme }) => theme.colors.text.main};
+  margin: ${({ theme }) => theme.spacing.lg} 0 ${({ theme }) => theme.spacing.md} 0;
 `;
 
 export const ErrorMessage = styled.p`
-  font-size: 16px;
-  color: #6b7280;
-  line-height: 1.6;
-  margin: 0 0 32px 0;
+  font-size: ${({ theme }) => theme.fontSize.base};
+  color: ${({ theme }) => theme.colors.text.light};
+  line-height: 1.625;
+  margin: 0 0 ${({ theme }) => theme.spacing.xl} 0;
 `;
 
 export const HomeButton = styled.button`
-  padding: 12px 24px;
-  background-color: #3b82f6;
-  color: #ffffff;
+  padding: 12px ${({ theme }) => theme.spacing.lg};
+  background-color: ${({ theme }) => theme.colors.blue.main};
+  color: ${({ theme }) => theme.colors.text.white};
   border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 500;
+  border-radius: ${({ theme }) => theme.radius.md};
+  font-size: ${({ theme }) => theme.fontSize.base};
+  font-weight: ${({ theme }) => theme.fontWeight.medium};
   cursor: pointer;
   transition: background-color 0.2s;
 
   &:hover {
-    background-color: #2563eb;
+    background-color: ${({ theme }) => theme.colors.blue.dark};
   }
 
   &:active {

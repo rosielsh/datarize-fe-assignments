@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 
 export const TableRow = styled.tr`
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border.gray};
   cursor: pointer;
   transition: background-color 0.2s;
 
   &:hover {
-    background-color: #f9fafb;
+    background-color: ${({ theme }) => theme.colors.bg.gray};
   }
 
   &:last-child {
@@ -15,7 +15,7 @@ export const TableRow = styled.tr`
 `;
 
 export const TableCell = styled.td`
-  padding: 12px 16px;
-  font-size: 14px;
-  color: #111827;
+  padding: 12px ${({ theme }) => theme.spacing.md};
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  color: ${({ theme }) => theme.colors.text.main};
 `;

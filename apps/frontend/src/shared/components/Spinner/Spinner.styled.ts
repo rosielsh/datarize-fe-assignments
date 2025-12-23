@@ -13,8 +13,8 @@ const sizeMap = {
 export const Spinner = styled.div<SpinnerProps>`
   width: ${({ size }) => sizeMap[size]};
   height: ${({ size }) => sizeMap[size]};
-  border: 3px solid #e5e7eb;
-  border-top-color: #3b82f6;
+  border: 3px solid ${({ theme }) => theme.colors.border.gray};
+  border-top-color: ${({ theme }) => theme.colors.blue.main};
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 
@@ -24,4 +24,3 @@ export const Spinner = styled.div<SpinnerProps>`
     }
   }
 `;
-

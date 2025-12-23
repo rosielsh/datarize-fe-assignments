@@ -25,9 +25,9 @@ export const Backdrop = styled.div`
 `;
 
 export const ModalContainer = styled.div<{ $width: string; $height: string }>`
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.bg.white};
   border-radius: 12px;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: ${({ theme }) => theme.shadow.lg};
   width: ${({ $width }) => $width};
   height: ${({ $height }) => $height};
   max-width: 90%;
@@ -63,9 +63,9 @@ export const HeaderSpacer = styled.span`
 `;
 
 export const ModalTitle = styled.h2`
-  font-size: 20px;
-  font-weight: 600;
-  color: #484848;
+  font-size: ${({ theme }) => theme.fontSize.lg};
+  font-weight: ${({ theme }) => theme.fontWeight.semibold};
+  color: ${({ theme }) => theme.colors.text.main};
   margin: 0;
   flex: 1;
   text-align: center;
@@ -75,29 +75,29 @@ export const CloseButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px;
+  padding: ${({ theme }) => theme.spacing.xs};
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #6b7280;
+  color: ${({ theme }) => theme.colors.text.light};
   transition: color 0.2s;
   width: 32px;
   height: 32px;
   flex-shrink: 0;
 
   &:hover {
-    color: #111827;
+    color: ${({ theme }) => theme.colors.text.main};
   }
 
   &:focus {
-    outline: 2px solid #3b82f6;
+    outline: 2px solid ${({ theme }) => theme.colors.blue.main};
     outline-offset: 2px;
-    border-radius: 4px;
+    border-radius: ${({ theme }) => theme.radius.sm};
   }
 `;
 
 export const ModalContent = styled.section`
-  padding: 1rem;
+  padding: ${({ theme }) => theme.spacing.md};
   overflow-y: auto;
   flex: 1;
 
@@ -106,16 +106,16 @@ export const ModalContent = styled.section`
   }
 
   &::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 4px;
+    background: ${({ theme }) => theme.colors.bg.gray};
+    border-radius: ${({ theme }) => theme.radius.sm};
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 4px;
+    background: ${({ theme }) => theme.colors.text.light};
+    border-radius: ${({ theme }) => theme.radius.sm};
 
     &:hover {
-      background: #555;
+      background: ${({ theme }) => theme.colors.text.sub};
     }
   }
 `;

@@ -11,8 +11,8 @@ export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding-bottom: 24px;
-  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: ${({ theme }) => theme.spacing.lg};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border.gray};
 `;
 
 export const HeaderContent = styled.div`
@@ -20,49 +20,49 @@ export const HeaderContent = styled.div`
 `;
 
 export const CustomerName = styled.h2`
-  margin: 0 0 8px 0;
-  font-size: 20px;
-  font-weight: 600;
-  color: #111827;
+  margin: 0 0 ${({ theme }) => theme.spacing.sm} 0;
+  font-size: ${({ theme }) => theme.fontSize.lg};
+  font-weight: ${({ theme }) => theme.fontWeight.semibold};
+  color: ${({ theme }) => theme.colors.text.main};
 `;
 
 export const CustomerId = styled.p`
-  margin: 0 0 16px 0;
-  font-size: 14px;
-  color: #6b7280;
+  margin: 0 0 ${({ theme }) => theme.spacing.md} 0;
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  color: ${({ theme }) => theme.colors.text.light};
 `;
 
 export const MetricsContainer = styled.div`
   display: flex;
-  gap: 24px;
+  gap: ${({ theme }) => theme.spacing.lg};
 `;
 
 export const Metric = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: ${({ theme }) => theme.spacing.sm};
 `;
 
 export const MetricText = styled.span`
-  font-size: 14px;
-  color: #6b7280;
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  color: ${({ theme }) => theme.colors.text.light};
 `;
 
 export const MetricValue = styled.span`
-  font-size: 14px;
-  font-weight: 600;
-  color: #111827;
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  font-weight: ${({ theme }) => theme.fontWeight.semibold};
+  color: ${({ theme }) => theme.colors.text.main};
 `;
 
 export const Content = styled.div`
-  padding-top: 24px;
+  padding-top: ${({ theme }) => theme.spacing.lg};
   overflow-y: auto;
   flex: 1;
 `;
 
 export const SectionTitle = styled.h3`
-  margin: 0 0 16px 0;
-  font-size: 16px;
-  font-weight: 600;
-  color: #111827;
+  margin: 0 0 ${({ theme }) => theme.spacing.md} 0;
+  font-size: ${({ theme }) => theme.fontSize.base};
+  font-weight: ${({ theme }) => theme.fontWeight.semibold};
+  color: ${({ theme }) => theme.colors.text.main};
 `;

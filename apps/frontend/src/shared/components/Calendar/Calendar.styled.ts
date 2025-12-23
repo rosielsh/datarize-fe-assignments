@@ -3,11 +3,11 @@ import styled from '@emotion/styled';
 export const CalendarContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 24px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  gap: ${({ theme }) => theme.spacing.md};
+  padding: ${({ theme }) => theme.spacing.lg};
+  background-color: ${({ theme }) => theme.colors.bg.white};
+  border-radius: ${({ theme }) => theme.radius.md};
+  box-shadow: ${({ theme }) => theme.shadow.md};
   min-width: 320px;
 `;
 
@@ -15,13 +15,13 @@ export const CalendarHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 4px;
+  padding: 0 ${({ theme }) => theme.spacing.xs};
 `;
 
 export const MonthYear = styled.div`
-  font-size: 16px;
-  font-weight: 600;
-  color: #111827;
+  font-size: ${({ theme }) => theme.fontSize.base};
+  font-weight: ${({ theme }) => theme.fontWeight.semibold};
+  color: ${({ theme }) => theme.colors.text.main};
 `;
 
 export const NavButton = styled.button`
@@ -32,25 +32,25 @@ export const NavButton = styled.button`
   height: 32px;
   border: none;
   background-color: transparent;
-  color: #6b7280;
+  color: ${({ theme }) => theme.colors.text.light};
   cursor: pointer;
   border-radius: 6px;
   transition: all 0.2s;
 
   &:hover {
-    background-color: #f3f4f6;
-    color: #111827;
+    background-color: ${({ theme }) => theme.colors.border.lightGray};
+    color: ${({ theme }) => theme.colors.text.main};
   }
 
   &:active {
-    background-color: #e5e7eb;
+    background-color: ${({ theme }) => theme.colors.border.gray};
   }
 `;
 
 export const Weekdays = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
+  gap: ${({ theme }) => theme.spacing.xs};
 `;
 
 export const Weekday = styled.div`
@@ -58,15 +58,15 @@ export const Weekday = styled.div`
   align-items: center;
   justify-content: center;
   height: 32px;
-  font-size: 12px;
-  font-weight: 600;
-  color: #6b7280;
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  font-weight: ${({ theme }) => theme.fontWeight.semibold};
+  color: ${({ theme }) => theme.colors.text.light};
 `;
 
 export const CalendarGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
+  gap: ${({ theme }) => theme.spacing.xs};
 `;
 
 type CalendarDayBaseProps = {
@@ -81,18 +81,18 @@ export const CalendarDay = styled.button<CalendarDayBaseProps>`
   height: 40px;
   border: none;
   background-color: transparent;
-  color: #111827;
-  font-size: 14px;
+  color: ${({ theme }) => theme.colors.text.main};
+  font-size: ${({ theme }) => theme.fontSize.sm};
   cursor: pointer;
   border-radius: 6px;
   transition: all 0.2s;
 
   &:hover {
-    background-color: #f3f4f6;
+    background-color: ${({ theme }) => theme.colors.border.light};
   }
 
   &:active {
-    background-color: #e5e7eb;
+    background-color: ${({ theme }) => theme.colors.border.default};
   }
 `;
 
@@ -101,12 +101,12 @@ export const CalendarDayOtherMonth = styled(CalendarDay)`
 `;
 
 export const CalendarDaySelected = styled(CalendarDay)`
-  background-color: #3b82f6;
-  color: #ffffff;
-  font-weight: 600;
+  background-color: ${({ theme }) => theme.colors.blue.main};
+  color: ${({ theme }) => theme.colors.text.white};
+  font-weight: ${({ theme }) => theme.fontWeight.semibold};
 
   &:hover {
-    background-color: #2563eb;
+    background-color: ${({ theme }) => theme.colors.blue.dark};
   }
 
   &:active {
@@ -117,7 +117,7 @@ export const CalendarDaySelected = styled(CalendarDay)`
 export const CalendarDayInRange = styled(CalendarDay)`
   background-color: #dbeafe;
   color: #1e40af;
-  font-weight: 500;
+  font-weight: ${({ theme }) => theme.fontWeight.medium};
 
   &:hover {
     background-color: #bfdbfe;
