@@ -2,6 +2,7 @@ import ChevronDownIcon from '@/shared/assets/icons/ChevronDown/ChevronDown';
 import ChevronUpIcon from '@/shared/assets/icons/ChevronUp/ChevronUp';
 import Input from '@/shared/components/Input/Input';
 import { useModal } from '@/shared/components/Modal/useModal';
+import { useDebounce } from '@/shared/hooks/useDebounce';
 import { useState } from 'react';
 import { useSort } from '../../hooks/useSort';
 import type { Customer } from '../../types/customer';
@@ -10,7 +11,8 @@ import CustomerPurchaseModal from '../CustomerPurchaseModal/CustomerPurchaseModa
 import * as S from './CustomerRankingSection.styled';
 
 const CustomerRankingSection = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [inputValue, setInputValue] = useState('');
+  const searchQuery = useDebounce(inputValue, 500);
   const { sortOrder, handleSort } = useSort();
   const { openModal } = useModal();
 
@@ -34,7 +36,7 @@ const CustomerRankingSection = () => {
           <S.Title>고객 구매 순위</S.Title>
         </S.TitleWrapper>
         <S.SearchWrapper>
-          <Input value={searchQuery} onChange={setSearchQuery} placeholder="고객 이름 검색..." />
+          <Input value={inputValue} onChange={setInputValue} placeholder="고객 이름 검색..." />
         </S.SearchWrapper>
       </S.Header>
 
