@@ -19,12 +19,3 @@ export const TableCell = styled.td`
   font-size: 14px;
   color: #111827;
 `;
-
-export const CountBadge = styled.span`
-  display: inline-block;
-  padding: 4px 12px;
-  border-radius: 12px;
-  font-size: 14px;
-  font-weight: 500;
-`;
-

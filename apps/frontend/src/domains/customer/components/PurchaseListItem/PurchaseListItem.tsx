@@ -10,7 +10,7 @@ type Props = {
 
 const PurchaseListItem = ({ purchase }: Props) => {
   return (
-    <S.PurchaseItem>
+    <S.Container>
       <S.ProductImage src={purchase.imgSrc} alt={purchase.product} />
       <S.PurchaseInfo>
         <S.ProductName>
@@ -22,7 +22,7 @@ const PurchaseListItem = ({ purchase }: Props) => {
         </S.PurchaseDate>
         <S.PurchasePrice>{formatAmount(purchase.price)}</S.PurchasePrice>
       </S.PurchaseInfo>
-    </S.PurchaseItem>
+    </S.Container>
   );
 };
 

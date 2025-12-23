@@ -12,9 +12,7 @@ const CustomerItem = ({ customer, onClick }: Props) => {
     <S.TableRow onClick={() => onClick(customer)}>
       <S.TableCell>{customer.id}</S.TableCell>
       <S.TableCell>{customer.name}</S.TableCell>
-      <S.TableCell>
-        <S.CountBadge>{customer.count}회</S.CountBadge>
-      </S.TableCell>
+      <S.TableCell>{customer.count}회</S.TableCell>
       <S.TableCell>{formatAmount(customer.totalAmount)}</S.TableCell>
     </S.TableRow>
   );

@@ -20,11 +20,11 @@ const PurchaseList = ({ customerId }: Props) => {
   }
 
   return (
-    <S.PurchaseList>
+    <S.Container>
       {data.map((purchase, index) => (
         <PurchaseListItem key={purchase.id ?? index} purchase={purchase} />
       ))}
-    </S.PurchaseList>
+    </S.Container>
   );
 };
 
