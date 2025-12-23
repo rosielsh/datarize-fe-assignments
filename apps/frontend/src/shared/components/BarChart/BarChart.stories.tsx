@@ -25,26 +25,43 @@ const sampleData = [
   { range: '90001 - 100000', count: 13 },
 ];
 
+const formatRange = (range: string | number): string => {
+  const rangeStr = String(range);
+  const parts = rangeStr.split(' - ');
+  if (parts.length !== 2) return rangeStr;
+
+  const start = parseInt(parts[0], 10);
+  const end = parseInt(parts[1], 10);
+
+  const formatAmount = (amount: number): string => {
+    if (amount === 0) return '~';
+    const 만원 = Math.floor(amount / 10000);
+    if (만원 === 0) {
+      return `${amount}원`;
+    }
+    return `${만원}만원`;
+  };
+
+  if (start === 0) {
+    return `~${formatAmount(end)}`;
+  }
+
+  return `${formatAmount(start)}~${formatAmount(end)}`;
+};
+
 export const Default: Story = {
   args: {
     data: sampleData,
-    title: '가격대별 구매 빈도',
-    dateRange: {
-      startDate: '2024.07.01',
-      endDate: '2024.07.31',
-    },
+    xAxisKey: 'range',
+    barKey: 'count',
+    formatXAxisLabel: formatRange,
   },
 };
 
-export const WithoutTitle: Story = {
+export const WithoutFormat: Story = {
   args: {
     data: sampleData,
-  },
-};
-
-export const WithoutDateRange: Story = {
-  args: {
-    data: sampleData,
-    title: '가격대별 구매 빈도',
+    xAxisKey: 'range',
+    barKey: 'count',
   },
 };
