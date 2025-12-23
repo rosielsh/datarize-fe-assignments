@@ -1,47 +1,17 @@
 import BarChart from '@/shared/components/BarChart/BarChart';
 import DatePicker from '@/shared/components/DatePicker/DatePicker';
 import { useState } from 'react';
+import { formatDate } from '../../formatters/formatDate';
+import { formatRange } from '../../formatters/formatRange';
 import * as S from './PurchaseFrequencySection.styled';
 
 const PurchaseFrequencySection = () => {
-  const [startDate, setStartDate] = useState<Date | null>(new Date(2024, 6, 1));
-  const [endDate, setEndDate] = useState<Date | null>(new Date(2024, 6, 31));
+  const [startDate, setStartDate] = useState<string>('2024-07-01');
+  const [endDate, setEndDate] = useState<string>('2024-07-31');
 
-  const handleDateRangeChange = (start: Date | null, end: Date | null) => {
+  const handleDateRangeChange = (start: string, end: string) => {
     setStartDate(start);
     setEndDate(end);
-  };
-
-  const formatRange = (range: string | number): string => {
-    const rangeStr = String(range);
-    const parts = rangeStr.split(' - ');
-    if (parts.length !== 2) return rangeStr;
-
-    const start = parseInt(parts[0], 10);
-    const end = parseInt(parts[1], 10);
-
-    const formatAmount = (amount: number): string => {
-      if (amount === 0) return '~';
-      const 만원 = Math.floor(amount / 10000);
-      if (만원 === 0) {
-        return `${amount}원`;
-      }
-      return `${만원}만원`;
-    };
-
-    if (start === 0) {
-      return `~${formatAmount(end)}`;
-    }
-
-    return `${formatAmount(start)}~${formatAmount(end)}`;
-  };
-
-  const formatDate = (date: Date | null): string => {
-    if (!date) return '';
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${year}.${month}.${day}`;
   };
 
   const sampleData = [
