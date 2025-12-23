@@ -3,27 +3,16 @@ import ChevronUpIcon from '@/shared/assets/icons/ChevronUp/ChevronUp';
 import Input from '@/shared/components/Input/Input';
 import { useModal } from '@/shared/components/Modal/useModal';
 import { useState } from 'react';
+import { useSort } from '../../hooks/useSort';
 import type { Customer } from '../../types/customer';
 import CustomerList from '../CustomerList/CustomerList';
 import CustomerPurchaseModal from '../CustomerPurchaseModal/CustomerPurchaseModal';
 import * as S from './CustomerRankingSection.styled';
 
-type SortOrder = 'asc' | 'desc' | null;
-
 const CustomerRankingSection = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [sortOrder, setSortOrder] = useState<SortOrder>(null);
+  const { sortOrder, handleSort } = useSort();
   const { openModal } = useModal();
-
-  const handleSort = () => {
-    if (sortOrder === null) {
-      setSortOrder('asc');
-    } else if (sortOrder === 'asc') {
-      setSortOrder('desc');
-    } else {
-      setSortOrder(null);
-    }
-  };
 
   const handleCustomerClick = (customer: Customer) => {
     const customerInfo = {
