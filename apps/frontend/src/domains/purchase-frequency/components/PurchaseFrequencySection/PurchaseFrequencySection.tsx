@@ -54,7 +54,12 @@ const PurchaseFrequencySection = () => {
           <DateInput date={endDate} onInputClick={() => handleInput('end')} />
           {isOpenCalendar && (
             <S.CalendarWrapper>
-              <Calendar startDate={startDate} endDate={endDate} onDateClick={handleDateClick} />
+              <Calendar
+                startDate={startDate}
+                endDate={endDate}
+                onDateClick={handleDateClick}
+                selectionMode={selectType}
+              />
             </S.CalendarWrapper>
           )}
         </S.DateRangeContainer>
