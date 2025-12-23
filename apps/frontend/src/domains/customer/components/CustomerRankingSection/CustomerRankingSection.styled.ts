@@ -44,6 +44,12 @@ export const TableBody = styled.tbody``;
 
 export const TableRow = styled.tr`
   border-bottom: 1px solid #e5e7eb;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #f9fafb;
+  }
 
   &:last-child {
     border-bottom: none;

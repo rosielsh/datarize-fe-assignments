@@ -1,8 +1,10 @@
 import ChevronDownIcon from '@/shared/assets/icons/ChevronDown/ChevronDown';
 import ChevronUpIcon from '@/shared/assets/icons/ChevronUp/ChevronUp';
 import Input from '@/shared/components/Input/Input';
+import { useModal } from '@/shared/components/Modal/useModal';
 import { useState } from 'react';
 import { useCustomers } from '../../hooks';
+import CustomerPurchaseModal from '../CustomerPurchaseModal/CustomerPurchaseModal';
 import * as S from './CustomerRankingSection.styled';
 
 type SortField = 'id' | 'totalAmount';
@@ -12,6 +14,7 @@ const CustomerRankingSection = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortField, setSortField] = useState<SortField>('id');
   const [sortOrder, setSortOrder] = useState<SortOrder>(null);
+  const { openModal } = useModal();
 
   const {
     data: customers,
@@ -39,6 +42,24 @@ const CustomerRankingSection = () => {
 
   const formatAmount = (amount: number): string => {
     return `₩${amount.toLocaleString()}`;
+  };
+
+  const handleCustomerClick = (customer: {
+    id: number;
+    name: string;
+    count: number;
+    totalAmount: number;
+  }) => {
+    const customerInfo = {
+      id: customer.id,
+      name: customer.name,
+      code: customer.id,
+      count: customer.count,
+      totalAmount: customer.totalAmount,
+    };
+    openModal(<CustomerPurchaseModal customer={customerInfo} />, {
+      title: '고객 구매 내역',
+    });
   };
 
   return (
@@ -80,7 +101,7 @@ const CustomerRankingSection = () => {
             </S.TableRow>
           ) : (
             customers.map((customer) => (
-              <S.TableRow key={customer.id}>
+              <S.TableRow key={customer.id} onClick={() => handleCustomerClick(customer)}>
                 <S.TableCell>{customer.id}</S.TableCell>
                 <S.TableCell>{customer.name}</S.TableCell>
                 <S.TableCell>

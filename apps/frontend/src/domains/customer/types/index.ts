@@ -12,6 +12,9 @@ export type CustomerParams = {
 
 export type Purchase = {
   id: number;
-  amount: number;
+  quantity: number;
+  product: string;
+  price: number;
+  imgSrc: string;
   date: string;
 };
