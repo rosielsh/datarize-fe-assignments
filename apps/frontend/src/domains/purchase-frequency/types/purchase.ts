@@ -4,6 +4,6 @@ export type PurchaseFrequencyData = {
 };
 
 export type PurchaseFrequencyParams = {
-  from?: string;
-  to?: string;
+  from: string;
+  to: string;
 };

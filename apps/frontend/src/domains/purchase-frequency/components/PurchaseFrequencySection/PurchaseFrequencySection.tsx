@@ -4,7 +4,7 @@ import DateInput from '@/shared/components/DateInput/DateInput';
 import { useState } from 'react';
 import { formatDate } from '../../../../shared/formatters/formatDate';
 import { formatRange } from '../../formatters/formatRange';
-import { usePurchaseFrequency } from '../../hooks';
+import { usePurchaseFrequency } from '../../hooks/usePurchaseFrequency';
 import * as S from './PurchaseFrequencySection.styled';
 
 const PurchaseFrequencySection = () => {

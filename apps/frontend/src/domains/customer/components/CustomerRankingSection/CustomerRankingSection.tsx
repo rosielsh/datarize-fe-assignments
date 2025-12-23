@@ -3,7 +3,7 @@ import ChevronUpIcon from '@/shared/assets/icons/ChevronUp/ChevronUp';
 import Input from '@/shared/components/Input/Input';
 import { useModal } from '@/shared/components/Modal/useModal';
 import { useState } from 'react';
-import { useCustomers } from '../../hooks';
+import { useCustomers } from '../../hooks/useCustomers';
 import CustomerPurchaseModal from '../CustomerPurchaseModal/CustomerPurchaseModal';
 import * as S from './CustomerRankingSection.styled';
 

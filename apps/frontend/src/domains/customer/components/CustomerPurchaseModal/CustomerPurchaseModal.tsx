@@ -1,7 +1,7 @@
 import CalendarIcon from '@/shared/assets/icons/Calendar/Calendar';
 import CustomerIcon from '@/shared/assets/icons/Customer/Customer';
 import { formatDate } from '@/shared/formatters/formatDate';
-import { useCustomerPurchases } from '../../hooks';
+import { useCustomerPurchases } from '../../hooks/useCustomerPurchases';
 import * as S from './CustomerPurchaseModal.styled';
 
 type CustomerInfo = {
