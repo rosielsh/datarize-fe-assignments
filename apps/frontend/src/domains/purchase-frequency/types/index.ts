@@ -1,2 +1,9 @@
-// 구매 빈도 도메인 타입 정의
+export type PurchaseFrequencyData = {
+  range: string;
+  count: number;
+};
 
+export type PurchaseFrequencyParams = {
+  from?: string;
+  to?: string;
+};
