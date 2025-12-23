@@ -1,6 +1,6 @@
 import type { ApiRequestOptions } from './types';
 
-const API_BASE_URL = import.meta.env.API_BASE_URL;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export async function apiRequest<T>(url: string, options: ApiRequestOptions): Promise<T> {
   const { method, body, params, headers = {} } = options;
