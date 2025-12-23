@@ -13,4 +13,3 @@ export const LoadingText = styled.div`
   color: #6b7280;
   font-size: 14px;
 `;
-

@@ -40,21 +40,7 @@ export const Table = styled.table`
 
 export const TableHead = styled.thead``;
 
-export const TableBody = styled.tbody``;
-
-export const TableRow = styled.tr`
-  border-bottom: 1px solid #e5e7eb;
-  cursor: pointer;
-  transition: background-color 0.2s;
-
-  &:hover {
-    background-color: #f9fafb;
-  }
-
-  &:last-child {
-    border-bottom: none;
-  }
-`;
+export const TableRow = styled.tr``;
 
 export const TableHeader = styled.th`
   padding: 12px 16px;
@@ -68,12 +54,6 @@ export const TableHeader = styled.th`
     width: 200px;
     min-width: 200px;
   }
-`;
-
-export const TableCell = styled.td`
-  padding: 12px 16px;
-  font-size: 14px;
-  color: #111827;
 `;
 
 export const SortButton = styled.button`
@@ -101,10 +81,7 @@ export const IconWrapper = styled.span`
   flex-shrink: 0;
 `;
 
-export const CountBadge = styled.span`
-  display: inline-block;
-  padding: 4px 12px;
-  border-radius: 12px;
-  font-size: 14px;
-  font-weight: 500;
+export const TableBody = styled.tbody`
+  width: 100%;
+  height: 100%;
 `;

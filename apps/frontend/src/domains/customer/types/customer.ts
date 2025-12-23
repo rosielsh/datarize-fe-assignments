@@ -6,7 +6,7 @@ export type Customer = {
 };
 
 export type CustomerParams = {
-  sortBy?: 'asc' | 'desc';
+  sortBy?: 'asc' | 'desc' | null;
   name?: string;
 };
 

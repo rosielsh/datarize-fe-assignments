@@ -3,53 +3,29 @@ import ChevronUpIcon from '@/shared/assets/icons/ChevronUp/ChevronUp';
 import Input from '@/shared/components/Input/Input';
 import { useModal } from '@/shared/components/Modal/useModal';
 import { useState } from 'react';
-import { useCustomers } from '../../hooks/useCustomers';
+import type { Customer } from '../../types/customer';
+import CustomerList from '../CustomerList/CustomerList';
 import CustomerPurchaseModal from '../CustomerPurchaseModal/CustomerPurchaseModal';
 import * as S from './CustomerRankingSection.styled';
 
-type SortField = 'id' | 'totalAmount';
 type SortOrder = 'asc' | 'desc' | null;
 
 const CustomerRankingSection = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [sortField, setSortField] = useState<SortField>('id');
   const [sortOrder, setSortOrder] = useState<SortOrder>(null);
   const { openModal } = useModal();
 
-  const {
-    data: customers,
-    isLoading,
-    error,
-  } = useCustomers({
-    name: searchQuery || undefined,
-    sortBy: sortField === 'totalAmount' ? sortOrder || undefined : undefined,
-  });
-
-  const handleSort = (field: SortField) => {
-    if (field === sortField) {
-      if (sortOrder === null) {
-        setSortOrder('asc');
-      } else if (sortOrder === 'asc') {
-        setSortOrder('desc');
-      } else {
-        setSortOrder(null);
-      }
-    } else {
-      setSortField(field);
+  const handleSort = () => {
+    if (sortOrder === null) {
       setSortOrder('asc');
+    } else if (sortOrder === 'asc') {
+      setSortOrder('desc');
+    } else {
+      setSortOrder(null);
     }
   };
 
-  const formatAmount = (amount: number): string => {
-    return `₩${amount.toLocaleString()}`;
-  };
-
-  const handleCustomerClick = (customer: {
-    id: number;
-    name: string;
-    count: number;
-    totalAmount: number;
-  }) => {
+  const handleCustomerClick = (customer: Customer) => {
     const customerInfo = {
       id: customer.id,
       name: customer.name,
@@ -80,37 +56,24 @@ const CustomerRankingSection = () => {
             <S.TableHeader>이름</S.TableHeader>
             <S.TableHeader>구매 횟수</S.TableHeader>
             <S.TableHeader>
-              <S.SortButton type="button" onClick={() => handleSort('totalAmount')}>
+              <S.SortButton type="button" onClick={handleSort}>
                 총 구매 금액
                 <S.IconWrapper>
-                  {sortField === 'totalAmount' && sortOrder === 'asc' && <ChevronUpIcon />}
-                  {sortField === 'totalAmount' && sortOrder === 'desc' && <ChevronDownIcon />}
+                  {sortOrder === 'asc' && <ChevronUpIcon />}
+                  {sortOrder === 'desc' && <ChevronDownIcon />}
                 </S.IconWrapper>
               </S.SortButton>
             </S.TableHeader>
           </S.TableRow>
         </S.TableHead>
         <S.TableBody>
-          {isLoading ? (
-            <S.TableRow>
-              <S.TableCell colSpan={4}>로딩 중...</S.TableCell>
-            </S.TableRow>
-          ) : error ? (
-            <S.TableRow>
-              <S.TableCell colSpan={4}>고객 데이터가 없습니다.</S.TableCell>
-            </S.TableRow>
-          ) : (
-            customers.map((customer) => (
-              <S.TableRow key={customer.id} onClick={() => handleCustomerClick(customer)}>
-                <S.TableCell>{customer.id}</S.TableCell>
-                <S.TableCell>{customer.name}</S.TableCell>
-                <S.TableCell>
-                  <S.CountBadge>{customer.count}회</S.CountBadge>
-                </S.TableCell>
-                <S.TableCell>{formatAmount(customer.totalAmount)}</S.TableCell>
-              </S.TableRow>
-            ))
-          )}
+          <CustomerList
+            params={{
+              name: searchQuery,
+              sortBy: sortOrder,
+            }}
+            onCustomerClick={handleCustomerClick}
+          />
         </S.TableBody>
       </S.Table>
     </S.Container>
