@@ -34,5 +34,9 @@ export const useFetch = <T>({ fetcher, deps = [], enabled = true }: UseFetchOpti
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [...deps, enabled]);
 
+  if (error) {
+    throw error;
+  }
+
   return { data, isLoading, error };
 };

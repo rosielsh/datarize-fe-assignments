@@ -5,6 +5,7 @@ type SortOrder = 'asc' | 'desc' | null;
 type UseSortReturn = {
   sortOrder: SortOrder;
   handleSort: () => void;
+  resetSort: () => void;
 };
 
 export const useSort = (): UseSortReturn => {
@@ -20,5 +21,9 @@ export const useSort = (): UseSortReturn => {
     }
   };
 
-  return { sortOrder, handleSort };
+  const resetSort = () => {
+    setSortOrder(null);
+  };
+
+  return { sortOrder, handleSort, resetSort };
 };

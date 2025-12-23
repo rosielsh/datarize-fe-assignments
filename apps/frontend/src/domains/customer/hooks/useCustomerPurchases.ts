@@ -5,15 +5,14 @@ import type { Purchase } from '../types/customer';
 type UseCustomerPurchasesResponse = {
   data: Purchase[];
   isLoading: boolean;
-  error: Error | null;
 };
 
 export const useCustomerPurchases = (id: number): UseCustomerPurchasesResponse => {
-  const { data, isLoading, error } = useFetch({
+  const { data, isLoading } = useFetch({
     fetcher: () => getCustomerPurchases(id),
     deps: [id],
     enabled: !!id,
   });
 
-  return { data: data ?? [], isLoading, error };
+  return { data: data ?? [], isLoading };
 };

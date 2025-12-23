@@ -1,5 +1,6 @@
 import ChevronDownIcon from '@/shared/assets/icons/ChevronDown/ChevronDown';
 import ChevronUpIcon from '@/shared/assets/icons/ChevronUp/ChevronUp';
+import LocalErrorBoundary from '@/shared/components/ErrorBoundary/boundaries/LocalErrorBoundary';
 import Input from '@/shared/components/Input/Input';
 import { useModal } from '@/shared/components/Modal/useModal';
 import { useDebounce } from '@/shared/hooks/useDebounce';
@@ -13,7 +14,7 @@ import * as S from './CustomerRankingSection.styled';
 const CustomerRankingSection = () => {
   const [inputValue, setInputValue] = useState('');
   const searchQuery = useDebounce(inputValue, 500);
-  const { sortOrder, handleSort } = useSort();
+  const { sortOrder, handleSort, resetSort } = useSort();
   const { openModal } = useModal();
 
   const handleCustomerClick = (customer: Customer) => {
@@ -39,34 +40,40 @@ const CustomerRankingSection = () => {
           <Input value={inputValue} onChange={setInputValue} placeholder="고객 이름 검색..." />
         </S.SearchWrapper>
       </S.Header>
-
-      <S.Table>
-        <S.TableHead>
-          <S.TableRow>
-            <S.TableHeader>ID</S.TableHeader>
-            <S.TableHeader>이름</S.TableHeader>
-            <S.TableHeader>구매 횟수</S.TableHeader>
-            <S.TableHeader>
-              <S.SortButton type="button" onClick={handleSort}>
-                총 구매 금액
-                <S.IconWrapper>
-                  {sortOrder === 'asc' && <ChevronUpIcon />}
-                  {sortOrder === 'desc' && <ChevronDownIcon />}
-                </S.IconWrapper>
-              </S.SortButton>
-            </S.TableHeader>
-          </S.TableRow>
-        </S.TableHead>
-        <S.TableBody>
-          <CustomerList
-            params={{
-              name: searchQuery,
-              sortBy: sortOrder,
-            }}
-            onCustomerClick={handleCustomerClick}
-          />
-        </S.TableBody>
-      </S.Table>
+      <LocalErrorBoundary
+        onRetry={() => {
+          resetSort();
+          setInputValue('');
+        }}
+      >
+        <S.Table>
+          <S.TableHead>
+            <S.TableRow>
+              <S.TableHeader>ID</S.TableHeader>
+              <S.TableHeader>이름</S.TableHeader>
+              <S.TableHeader>구매 횟수</S.TableHeader>
+              <S.TableHeader>
+                <S.SortButton type="button" onClick={handleSort}>
+                  총 구매 금액
+                  <S.IconWrapper>
+                    {sortOrder === 'asc' && <ChevronUpIcon />}
+                    {sortOrder === 'desc' && <ChevronDownIcon />}
+                  </S.IconWrapper>
+                </S.SortButton>
+              </S.TableHeader>
+            </S.TableRow>
+          </S.TableHead>
+          <S.TableBody>
+            <CustomerList
+              params={{
+                name: searchQuery,
+                sortBy: sortOrder,
+              }}
+              onCustomerClick={handleCustomerClick}
+            />
+          </S.TableBody>
+        </S.Table>
+      </LocalErrorBoundary>
     </S.Container>
   );
 };

@@ -11,7 +11,7 @@ type Props = {
 };
 
 const CustomerList = ({ params, onCustomerClick }: Props) => {
-  const { data, isLoading, error } = useCustomers(params);
+  const { data, isLoading } = useCustomers(params);
 
   if (isLoading) {
     return (
@@ -19,10 +19,6 @@ const CustomerList = ({ params, onCustomerClick }: Props) => {
         <Loading />
       </S.TableCell>
     );
-  }
-
-  if (error) {
-    // TODO: 에러 처리
   }
 
   if (data.length === 0) {
