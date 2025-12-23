@@ -1,5 +1,5 @@
+import RangeCalendar from '@/domains/purchase-frequency/components/RangeCalendar/RangeCalendar';
 import BarChart from '@/shared/components/BarChart/BarChart';
-import Calendar from '@/shared/components/Calendar/Calendar';
 import DateInput from '@/shared/components/DateInput/DateInput';
 import Loading from '@/shared/components/Loading/Loading';
 import { formatDate } from '@/shared/formatters/formatDate';
@@ -43,7 +43,7 @@ const PurchaseFrequencySection = () => {
           <DateInput date={endDate} onInputClick={() => open('end')} />
           {isOpen && (
             <S.CalendarWrapper>
-              <Calendar
+              <RangeCalendar
                 startDate={startDate}
                 endDate={endDate}
                 onDateClick={handleDateClick}

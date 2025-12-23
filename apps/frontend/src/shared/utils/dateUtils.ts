@@ -34,3 +34,34 @@ export const getYearMonthDay = (date: string): { year: number; month: number; da
     day: Number(day),
   };
 };
+
+export const formatDateString = (year: number, month: number, day: number): string => {
+  return `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+};
+
+export const isLeapYear = (year: number): boolean => {
+  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+};
+
+export const getDaysInMonth = (year: number, month: number): number => {
+  const daysInMonthMap: { [key: number]: number } = {
+    1: 31,
+    2: isLeapYear(year) ? 29 : 28,
+    3: 31,
+    4: 30,
+    5: 31,
+    6: 30,
+    7: 31,
+    8: 31,
+    9: 30,
+    10: 31,
+    11: 30,
+    12: 31,
+  };
+  return daysInMonthMap[month] || 31;
+};
+
+export const getFirstDayOfWeek = (year: number, month: number): number => {
+  const date = new Date(year, month - 1, 1);
+  return date.getDay();
+};

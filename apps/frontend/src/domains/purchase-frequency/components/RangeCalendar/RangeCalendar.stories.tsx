@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Calendar from './Calendar';
+import RangeCalendar from './RangeCalendar';
 
 const meta = {
-  title: 'Shared/Calendar',
-  component: Calendar,
+  title: 'Purchase/RangeCalendar',
+  component: RangeCalendar,
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
   },
-} satisfies Meta<typeof Calendar>;
+} satisfies Meta<typeof RangeCalendar>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

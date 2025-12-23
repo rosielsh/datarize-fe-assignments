@@ -1,8 +1,13 @@
 import ChevronLeftIcon from '@/shared/assets/icons/ChevronLeft/ChevronLeft';
 import ChevronRightIcon from '@/shared/assets/icons/ChevronRight/ChevronRight';
-import { getYearMonthDay } from '@/shared/utils/dateUtils';
-import { useState } from 'react';
-import * as S from './Calendar.styled';
+import {
+  formatDateString,
+  getDaysInMonth,
+  getFirstDayOfWeek,
+  getYearMonthDay,
+} from '@/shared/utils/dateUtils';
+import { useEffect, useState } from 'react';
+import * as S from './RangeCalendar.styled';
 
 export type Props = {
   startDate: string;
@@ -17,51 +22,31 @@ type YearMonthDay = {
   day: number;
 };
 
-const formatDateString = (year: number, month: number, day: number): string => {
-  return `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-};
-
-const isLeapYear = (year: number): boolean => {
-  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
-};
-
-const getDaysInMonth = (year: number, month: number): number => {
-  const daysInMonthMap: { [key: number]: number } = {
-    1: 31,
-    2: isLeapYear(year) ? 29 : 28,
-    3: 31,
-    4: 30,
-    5: 31,
-    6: 30,
-    7: 31,
-    8: 31,
-    9: 30,
-    10: 31,
-    11: 30,
-    12: 31,
+const RangeCalendar = ({ startDate, endDate, onDateClick, selectionMode }: Props) => {
+  const getInitialMonth = () => {
+    if (selectionMode === 'start' && startDate) {
+      const { year, month } = getYearMonthDay(startDate);
+      return { year, month };
+    }
+    if (selectionMode === 'end' && endDate) {
+      const { year, month } = getYearMonthDay(endDate);
+      return { year, month };
+    }
+    const now = new Date();
+    return { year: now.getFullYear(), month: now.getMonth() + 1 };
   };
-  return daysInMonthMap[month] || 31;
-};
 
-const getFirstDayOfWeek = (year: number, month: number): number => {
-  let m = month;
-  let y = year;
-  if (m < 3) {
-    m += 12;
-    y -= 1;
-  }
-  const k = y % 100;
-  const j = Math.floor(y / 100);
-  const dayOfWeek =
-    (1 + Math.floor((13 * (m + 1)) / 5) + k + Math.floor(k / 4) + Math.floor(j / 4) - 2 * j) % 7;
-  return (dayOfWeek + 5) % 7;
-};
+  const [currentMonth, setCurrentMonth] = useState(getInitialMonth);
 
-const Calendar = ({ startDate, endDate, onDateClick, selectionMode }: Props) => {
-  const [currentMonth, setCurrentMonth] = useState(() => {
-    const { year, month } = getYearMonthDay(startDate);
-    return { year, month };
-  });
+  useEffect(() => {
+    if (selectionMode === 'start' && startDate) {
+      const { year, month } = getYearMonthDay(startDate);
+      setCurrentMonth({ year, month });
+    } else if (selectionMode === 'end' && endDate) {
+      const { year, month } = getYearMonthDay(endDate);
+      setCurrentMonth({ year, month });
+    }
+  }, [selectionMode, startDate, endDate]);
 
   const handlePrevMonth = () => {
     setCurrentMonth((prev) => {
@@ -245,4 +230,4 @@ const Calendar = ({ startDate, endDate, onDateClick, selectionMode }: Props) => 
   );
 };
 
-export default Calendar;
+export default RangeCalendar;

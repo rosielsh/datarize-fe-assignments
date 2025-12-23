@@ -88,11 +88,11 @@ export const CalendarDay = styled.button<CalendarDayBaseProps>`
   transition: all 0.2s;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.border.light};
+    background-color: ${({ theme }) => theme.colors.border.lightGray};
   }
 
   &:active {
-    background-color: ${({ theme }) => theme.colors.border.default};
+    background-color: ${({ theme }) => theme.colors.border.gray};
   }
 `;
 
