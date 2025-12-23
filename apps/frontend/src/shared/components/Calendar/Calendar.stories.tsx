@@ -15,8 +15,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    startDate: new Date(2024, 6, 1),
-    endDate: new Date(2024, 6, 31),
+    startDate: '2024-07-01',
+    endDate: '2024-07-31',
     onDateClick: () => {},
     selectionMode: 'start',
   },
@@ -24,8 +24,8 @@ export const Default: Story = {
 
 export const EmptyState: Story = {
   args: {
-    startDate: null,
-    endDate: null,
+    startDate: '',
+    endDate: '',
     onDateClick: () => {},
     selectionMode: 'start',
   },
@@ -33,8 +33,8 @@ export const EmptyState: Story = {
 
 export const SelectedState: Story = {
   args: {
-    startDate: new Date(2024, 6, 15),
-    endDate: new Date(2024, 6, 31),
+    startDate: '2024-07-15',
+    endDate: '2024-07-31',
     onDateClick: () => {},
     selectionMode: 'start',
   },
