@@ -1,5 +1,6 @@
 import BarChart from '@/shared/components/BarChart/BarChart';
-import DatePicker from '@/shared/components/DatePicker/DatePicker';
+import Calendar from '@/shared/components/Calendar/Calendar';
+import DateInput from '@/shared/components/DateInput/DateInput';
 import { useState } from 'react';
 import { formatDate } from '../../formatters/formatDate';
 import { formatRange } from '../../formatters/formatRange';
@@ -8,11 +9,8 @@ import * as S from './PurchaseFrequencySection.styled';
 const PurchaseFrequencySection = () => {
   const [startDate, setStartDate] = useState<string>('2024-07-01');
   const [endDate, setEndDate] = useState<string>('2024-07-31');
-
-  const handleDateRangeChange = (start: string, end: string) => {
-    setStartDate(start);
-    setEndDate(end);
-  };
+  const [isOpenCalendar, setIsOpenCalendar] = useState(false);
+  const [selectType, setSelectType] = useState<'start' | 'end' | null>(null);
 
   const sampleData = [
     { range: '0 - 20000', count: 10 },
@@ -26,6 +24,21 @@ const PurchaseFrequencySection = () => {
     { range: '90001 - 100000', count: 13 },
   ];
 
+  const handleInput = (type: 'start' | 'end') => {
+    setIsOpenCalendar(true);
+    setSelectType(type);
+  };
+
+  const handleDateClick = (date: string) => {
+    if (selectType === 'start') {
+      setStartDate(date);
+    } else {
+      setEndDate(date);
+    }
+    setIsOpenCalendar(false);
+    setSelectType(null);
+  };
+
   return (
     <S.Container>
       <S.Header>
@@ -35,11 +48,16 @@ const PurchaseFrequencySection = () => {
             {formatDate(startDate)} ~ {formatDate(endDate)} 기간의 데이터를 집계
           </S.DateInfo>
         </S.TitleWrapper>
-        <DatePicker
-          startDate={startDate}
-          endDate={endDate}
-          onDateRangeChange={handleDateRangeChange}
-        />
+        <S.DateRangeContainer>
+          <DateInput date={startDate} onInputClick={() => handleInput('start')} />
+          <S.Separator>~</S.Separator>
+          <DateInput date={endDate} onInputClick={() => handleInput('end')} />
+          {isOpenCalendar && (
+            <S.CalendarWrapper>
+              <Calendar startDate={startDate} endDate={endDate} onDateClick={handleDateClick} />
+            </S.CalendarWrapper>
+          )}
+        </S.DateRangeContainer>
       </S.Header>
 
       <BarChart data={sampleData} xAxisKey="range" barKey="count" formatXAxisLabel={formatRange} />

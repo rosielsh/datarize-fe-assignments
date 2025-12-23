@@ -32,3 +32,27 @@ export const DateInfo = styled.div`
   font-size: 14px;
   color: #6b7280;
 `;
+
+export const DateRangeContainer = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+`;
+
+export const Separator = styled.span`
+  color: #6b7280;
+  font-size: 14px;
+  font-weight: 500;
+`;
+
+export const CalendarWrapper = styled.div`
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 1000;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+`;
